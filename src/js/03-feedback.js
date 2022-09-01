@@ -7,6 +7,8 @@ const messageRef = document.querySelector('textarea[name="message"]');
 const currentFeedback = {};
 const FORM_STATE_KEY = 'feedback-form-state';
 
+let submittedFeedback = null;
+
 formRef.addEventListener('input', throttle(onFormInput, 500));
 formRef.addEventListener('submit', onFormSubmit);
 
@@ -36,8 +38,7 @@ function onFormSubmit(e) {
   e.preventDefault();
 
   try {
-    const { email, message } = JSON.parse(localStorage.getItem(FORM_STATE_KEY));
-    const submittedFeedback = { email, message };
+    submittedFeedback = JSON.parse(localStorage.getItem(FORM_STATE_KEY));
     console.log(submittedFeedback);
   } catch (error) {}
 
